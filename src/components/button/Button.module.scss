@@ -1,3 +1,4 @@
+@import "../../styles/palette";
 .button {
   transition: all 0.2s ease-out;
   border: none;
@@ -5,13 +6,20 @@
   outline: none;
   padding: 5px;
   font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   &:hover {
     cursor: pointer;
+  }
+  img {
+    max-width: 20px;
+    margin-left: 5px;
   }
 }
 .primary {
   color: white;
-  background: linear-gradient(90deg,#00446A 0,#00446A 50%,#002235);
+  background: linear-gradient(90deg,$primary 0,$primary 50%, $primaryDark);
   background-size: 200% auto;
   position: relative;
   overflow: hidden;
@@ -19,4 +27,13 @@
     background-position: 100%;
   }
 }
-.accent {}
+.accent {
+  color: white;
+  background: linear-gradient(90deg,$accentLight 0,$accentDark 50%, $accentDark);
+  background-size: 200% auto;
+  position: relative;
+  overflow: hidden;
+  &:hover {
+    background-position: 50%;
+  }
+}

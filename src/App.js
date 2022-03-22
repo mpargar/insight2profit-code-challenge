@@ -5,6 +5,7 @@ import Logo from "./components/logo/Logo";
 import Input from "./components/input/Input";
 import useSearch from "hooks/useSearch";
 import Button from "./components/button/Button";
+import searchIcon from "./img/searchIcon.svg";
 function App() {
   const [address, setAddress] = useState("");
   const { handleSearch, loading } = useSearch();
@@ -21,7 +22,7 @@ function App() {
         disabled={loading}
         postponeComponent={
           <Button
-            styleType={"primary"}
+            styleType="primary"
             style={{
               height: "100%",
               minWidth: "100px",
@@ -29,7 +30,7 @@ function App() {
             }}
             type="submit"
           >
-            Buscar
+            Buscar <img src={searchIcon} alt="Search icon" />
           </Button>
         }
       />
