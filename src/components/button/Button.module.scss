@@ -1,0 +1,22 @@
+.button {
+  transition: all 0.2s ease-out;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+  padding: 5px;
+  font-size: 15px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.primary {
+  color: white;
+  background: linear-gradient(90deg,#00446A 0,#00446A 50%,#002235);
+  background-size: 200% auto;
+  position: relative;
+  overflow: hidden;
+  &:hover {
+    background-position: 100%;
+  }
+}
+.accent {}
