@@ -1,9 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 
 const useCards = (results = []) => {
-  const [currentCard, setCurrentCard] = useState(0);
+  const [currentCard, setCurrentCard] = useState(null);
   const [forecast, setForecast] = useState([]);
   useEffect(() => {
+    if (!results.length) {
+      setForecast([]);
+      handleSelectDay(null);
+    }
     const days = [];
     for (let i = 0; i < results.length; i += 2) {
       const name = i === 0 ? "Today" : results[i]?.name;

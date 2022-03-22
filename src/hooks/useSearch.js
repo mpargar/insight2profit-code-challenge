@@ -22,7 +22,6 @@ const useSearch = (address) => {
     try {
       const addressResponse = await getAddressDataService(address);
       if (addressResponse.status < 300) {
-        console.log(addressResponse);
         if (addressResponse?.data?.result?.addressMatches?.length) {
           const { x, y } =
             addressResponse?.data?.result?.addressMatches[0]?.coordinates;
@@ -38,7 +37,6 @@ const useSearch = (address) => {
     try {
       const gridsResponse = await getGridsService(x, y);
       if (gridsResponse.status < 300) {
-        console.log(gridsResponse);
         return getForecast(gridsResponse?.data?.properties);
       }
     } catch {
@@ -50,7 +48,6 @@ const useSearch = (address) => {
     try {
       const response = await getForecastService(gridId, gridX, gridY);
       if (response.status < 300) {
-        console.log(response?.data?.properties?.periods);
         setResults(response?.data?.properties?.periods);
         setLoading(false);
         return;

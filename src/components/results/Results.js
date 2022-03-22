@@ -3,7 +3,7 @@ import useCards from "../../hooks/useCards";
 import Button from "../button/Button";
 import styles from "./Results.module.scss";
 const Results = ({ results }) => {
-  const { currentCardIndex, forecast, handleSelectDay } = useCards(results);
+  const { currentCard, forecast, handleSelectDay } = useCards(results);
   return (
     <>
       <div className={styles.daysWrapper}>
@@ -11,12 +11,28 @@ const Results = ({ results }) => {
           <Button
             key={index}
             styleType="accent"
-            onClick={(day) => handleSelectDay(day)}
+            onClick={() => handleSelectDay(day)}
           >
             {day?.name}
           </Button>
         ))}
       </div>
+      {currentCard && (
+        <div className={styles.card}>
+          {currentCard?.forecast?.map((f) => (
+            <div key={f.name}>
+              <div className={styles.image}>
+                <img alt={f.shortForecast} src={f.icon} />
+              </div>
+              <span className={styles.dayName}>{f.name}</span>
+              <span className={styles.temperature}>
+                {f.temperature}°{f.temperatureUnit}
+              </span>
+              <span className={styles.forecast}>{f.detailedForecast}</span>
+            </div>
+          ))}
+        </div>
+      )}
     </>
   );
 };
