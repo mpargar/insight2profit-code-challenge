@@ -29,6 +29,7 @@ function App() {
               borderRadius: "0 30px 30px 0",
             }}
             type="submit"
+            loading={loading}
           >
             Buscar <img src={searchIcon} alt="Search icon" />
           </Button>

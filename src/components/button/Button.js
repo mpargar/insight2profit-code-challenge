@@ -1,11 +1,14 @@
 import React from "react";
 import styles from "./Button.module.scss";
+import LoadingIcon from "../loadingIcon/LoadingIcon";
 const Button = ({
   children,
   styleType,
   onClick = () => {},
   style = {},
   type = "",
+  disabled = false,
+  loading = false,
 }) => {
   return (
     <button
@@ -13,8 +16,9 @@ const Button = ({
       onClick={onClick}
       style={style}
       type={type}
+      disabled={disabled || loading}
     >
-      {children}
+      {loading ? <LoadingIcon /> : children}
     </button>
   );
 };
