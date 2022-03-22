@@ -34,7 +34,7 @@ function App() {
               type="submit"
               loading={loading}
             >
-              Buscar <img src={searchIcon} alt="Search icon" />
+              Search <img src={searchIcon} alt="Search icon" />
             </Button>
           }
         />
