@@ -8,33 +8,36 @@ import Button from "./components/button/Button";
 import searchIcon from "./img/searchIcon.svg";
 function App() {
   const [address, setAddress] = useState("");
-  const { handleSearch, loading } = useSearch();
+  const { handleSearch, loading, message } = useSearch(address);
 
   return (
     <div className="App">
       <FloatingLogos />
       <Logo />
-      <Input
-        id="address"
-        placeholder="Insert an address..."
-        value={address}
-        onChange={(e) => setAddress(e.target.value)}
-        disabled={loading}
-        postponeComponent={
-          <Button
-            styleType="primary"
-            style={{
-              height: "100%",
-              minWidth: "100px",
-              borderRadius: "0 30px 30px 0",
-            }}
-            type="submit"
-            loading={loading}
-          >
-            Buscar <img src={searchIcon} alt="Search icon" />
-          </Button>
-        }
-      />
+      <form onSubmit={handleSearch}>
+        <Input
+          id="address"
+          placeholder="Insert an address..."
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+          disabled={loading}
+          message={message}
+          postponeComponent={
+            <Button
+              styleType="primary"
+              style={{
+                height: "100%",
+                minWidth: "100px",
+                borderRadius: "0 30px 30px 0",
+              }}
+              type="submit"
+              loading={loading}
+            >
+              Buscar <img src={searchIcon} alt="Search icon" />
+            </Button>
+          }
+        />
+      </form>
     </div>
   );
 }

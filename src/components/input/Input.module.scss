@@ -8,6 +8,7 @@
   position: relative;
   display: flex;
   background-color: white;
+  position: relative;
   > input {
     box-sizing: border-box;
     width: 100%;
@@ -37,6 +38,12 @@
     font-size: 12px;
   }
 }
+  .error {
+    color: #950000;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 25px;
+  }
 .postponeComponent {
   display: flex;
   justify-content: center;

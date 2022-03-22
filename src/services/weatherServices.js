@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const getGridsService = async (x, y) => {
+  console.log(x, y, ",//");
   return await axios.get(`https://api.weather.gov/points/${y},${x}`);
 };
 

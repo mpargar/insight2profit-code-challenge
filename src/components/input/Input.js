@@ -8,6 +8,8 @@ const Input = ({
   type = "text",
   disabled = false,
   postponeComponent,
+  autoComplete = "off",
+  message,
 }) => {
   return (
     <div className={styles.inputWrapper}>
@@ -21,8 +23,10 @@ const Input = ({
         value={value}
         onChange={onChange}
         disabled={disabled}
+        autoComplete={autoComplete}
       />
       <div className={styles.postponeComponent}>{postponeComponent}</div>
+      <div className={styles.error}>{message}</div>
     </div>
   );
 };
