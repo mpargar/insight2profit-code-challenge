@@ -6,9 +6,10 @@ import Input from "./components/input/Input";
 import useSearch from "hooks/useSearch";
 import Button from "./components/button/Button";
 import searchIcon from "./img/searchIcon.svg";
+import Results from "./components/results/Results";
 function App() {
   const [address, setAddress] = useState("");
-  const { handleSearch, loading, message } = useSearch(address);
+  const { handleSearch, loading, message, results } = useSearch(address);
 
   return (
     <div className="App">
@@ -38,6 +39,7 @@ function App() {
           }
         />
       </form>
+      <Results results={results} />
     </div>
   );
 }
