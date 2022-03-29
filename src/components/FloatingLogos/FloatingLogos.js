@@ -1,3 +1,4 @@
+import React from "react";
 import distilleryLogo from "../../img/distillery.svg";
 import insight2profitLogo from "../../img/insight2profit.svg";
 import styles from "./FloatingLogos.module.scss";
