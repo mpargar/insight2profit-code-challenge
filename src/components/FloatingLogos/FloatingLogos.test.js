@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import FloatingLogos from "./FloatingLogos";
 import {
   DISTILLERY_LOGO_ALT,
@@ -8,10 +8,9 @@ import {
 import distilleryLogo from "../../img/distillery.svg";
 import insight2profitLogo from "../../img/insight2profit.svg";
 
-describe("Floating Logos", () => {
-  it("Should display container and their childs correctly", () => {
-    const { debug, container } = render(<FloatingLogos />);
-    debug();
+describe("FloatingLogos", () => {
+  it("Should display container and its childrens", async () => {
+    const { container } = render(<FloatingLogos />);
     const wrapper = container.getElementsByClassName("floatingLogosContainer");
     const images = wrapper?.[0]?.querySelectorAll("img");
     expect(wrapper.length).toBe(1);
