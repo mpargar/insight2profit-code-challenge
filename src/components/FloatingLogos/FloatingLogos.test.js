@@ -9,8 +9,11 @@ import distilleryLogo from "../../img/distillery.svg";
 import insight2profitLogo from "../../img/insight2profit.svg";
 
 describe("FloatingLogos", () => {
+  const setUp = () => {
+    return render(<FloatingLogos />);
+  };
   it("Should display container and its childrens", async () => {
-    const { container } = render(<FloatingLogos />);
+    const { container } = setUp();
     const wrapper = container.getElementsByClassName("floatingLogosContainer");
     const images = wrapper?.[0]?.querySelectorAll("img");
     expect(wrapper.length).toBe(1);
@@ -18,14 +21,14 @@ describe("FloatingLogos", () => {
   });
 
   it("Should render distillery logo", () => {
-    const { getByAltText } = render(<FloatingLogos />);
+    const { getByAltText } = setUp();
     const image = getByAltText(DISTILLERY_LOGO_ALT);
     expect(image.src).toContain(distilleryLogo);
     expect(image.className).toContain("logo");
   });
 
   it("Should render insight2profit logo", () => {
-    const { getByAltText } = render(<FloatingLogos />);
+    const { getByAltText } = setUp();
     const image = getByAltText(INSIGHT2PROFIT_LOGO_ALT);
     expect(image.src).toContain(insight2profitLogo);
     expect(image.className).toContain("logo");

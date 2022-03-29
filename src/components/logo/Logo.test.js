@@ -6,8 +6,11 @@ import { APP_TITLE, LOGO_ALT } from "./LogoConstants";
 import logoImg from "../../img/logo.svg";
 
 describe("Logo", () => {
+  const setUp = () => {
+    return render(<Logo />);
+  };
   it("Should render container and its children", () => {
-    const { container } = render(<Logo />);
+    const { container } = setUp();
     const wrapper = container.children[0];
     const image = wrapper.querySelectorAll("img");
     const title = wrapper.querySelectorAll("h1");
@@ -17,14 +20,14 @@ describe("Logo", () => {
   });
 
   it("Should render the wheater app logo", () => {
-    const { getByAltText } = render(<Logo />);
+    const { getByAltText } = setUp();
     const logo = getByAltText(LOGO_ALT);
     expect(logo.src).toContain(logoImg);
     expect(logo.className).toContain("logo");
   });
 
   it("Should render the app title", () => {
-    const { getByText, debug } = render(<Logo />);
+    const { getByText } = setUp();
     const title = getByText(APP_TITLE);
     expect(title).toBeInTheDocument();
   });
