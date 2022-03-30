@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import React from "react";
 import Input from "./Input";
 import styles from "./Input.module.scss";
@@ -96,5 +96,22 @@ describe("Input", () => {
     rerender(<Input {...originalProps} />);
     errorMessage = container.getElementsByClassName(styles.error);
     expect(errorMessage.length).toBe(0);
+  });
+
+  it("Should exec onChange callback on input change event is fired", () => {
+    const fakeEvent = { target: { value: "Test value" } };
+    const onChangeMock = jest.fn();
+    const onChange = (e) => onChangeMock(e.target.value);
+    const placeholder = "testPlaceholder";
+    const { getByPlaceholderText } = setUp({
+      id: "testId",
+      onChange,
+      placeholder,
+    });
+    const input = getByPlaceholderText(placeholder);
+    expect(input).toBeInTheDocument();
+    fireEvent.change(input, fakeEvent);
+    expect(onChangeMock).toHaveBeenCalledTimes(1);
+    expect(onChangeMock).toHaveBeenCalledWith(fakeEvent.target.value);
   });
 });
