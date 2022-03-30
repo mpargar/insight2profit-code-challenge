@@ -25,8 +25,10 @@ const Input = ({
         disabled={disabled}
         autoComplete={autoComplete}
       />
-      <div className={styles.postponeComponent}>{postponeComponent}</div>
-      <div className={styles.error}>{message}</div>
+      {!!postponeComponent && (
+        <div className={styles.postponeComponent}>{postponeComponent}</div>
+      )}
+      {!!message && <div className={styles.error}>{message}</div>}
     </div>
   );
 };
