@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 const useCards = (results = []) => {
   const [currentCard, setCurrentCard] = useState(null);
   const [forecast, setForecast] = useState([]);
+
   useEffect(() => {
     if (!results.length) {
       setForecast([]);
@@ -19,6 +20,7 @@ const useCards = (results = []) => {
     setForecast(days);
     handleSelectDay(days[0]);
   }, [results]);
+
   const handleSelectDay = (day) => {
     setCurrentCard(day);
   };

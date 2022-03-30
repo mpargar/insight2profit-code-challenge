@@ -3,7 +3,7 @@ import styles from "./Button.module.scss";
 import LoadingIcon from "../loadingIcon/LoadingIcon";
 const Button = ({
   children,
-  styleType,
+  styleType = "primary",
   onClick = () => {},
   style = {},
   type = "",
@@ -12,6 +12,7 @@ const Button = ({
 }) => {
   return (
     <button
+      data-testid="custom-button"
       className={`${styles.button} ${styles[styleType]}`}
       onClick={onClick}
       style={style}
