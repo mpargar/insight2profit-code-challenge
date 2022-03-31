@@ -26,7 +26,7 @@ describe("Results component", () => {
   });
 
   it("Should render this afternoon and tonight forecast by default", async () => {
-    const { container, findByText, debug } = setUp({ results: periods });
+    const { container, findByText } = setUp({ results: periods });
     const card = container.getElementsByClassName(styles.card);
     expect(card.length).toBe(1);
     const images = card[0].getElementsByClassName(styles.image);
@@ -44,7 +44,7 @@ describe("Results component", () => {
   it("Should load selected button day forecast", () => {
     const { container, queryByText, debug } = setUp({ results: periods });
     const buttonsWrapper = container.children[0];
-    const tomorrowButton = buttonsWrapper.querySelectorAll("button")[0];
+    const tomorrowButton = buttonsWrapper.querySelectorAll("button")[1];
     let cardWrapper = container.children[1];
     let images = cardWrapper.querySelectorAll("img");
     let title1 = queryByText(periods[0].name);
@@ -65,12 +65,27 @@ describe("Results component", () => {
     expect(temperature2).toBeInTheDocument();
     expect(forecastDetails1).toBeInTheDocument();
     expect(forecastDetails2).toBeInTheDocument();
-    fireEvent(
-      tomorrowButton,
-      new MouseEvent("click", { bubbles: true, cancelable: true })
+    // Event...
+    fireEvent.click(tomorrowButton);
+    // updated label
+    title1 = cardWrapper.querySelectorAll(`span.${styles.dayName}`)[0];
+    title2 = cardWrapper.querySelectorAll(`span.${styles.dayName}`)[1];
+    temperature1 = cardWrapper.querySelectorAll(
+      `span.${styles.temperature}`
+    )[0];
+    temperature2 = cardWrapper.querySelectorAll(
+      `span.${styles.temperature}`
+    )[1];
+    images = cardWrapper.querySelectorAll("img");
+    expect(title1.innerHTML).toBe(periods[2].name);
+    expect(title2.innerHTML).toBe(periods[3].name);
+    expect(temperature1.innerHTML).toBe(
+      `${periods[2].temperature}°${periods[2].temperatureUnit}`
     );
-    title1 = queryByText(periods[0].name);
-		debug();
-    expect(title1).toBeInTheDocument();
+    expect(temperature2.innerHTML).toBe(
+      `${periods[3].temperature}°${periods[3].temperatureUnit}`
+    );
+    expect(images[0].src).toBe(periods[2].icon);
+    expect(images[1].src).toBe(periods[3].icon);
   });
 });
