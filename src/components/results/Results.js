@@ -2,8 +2,8 @@ import React from "react";
 import useCards from "../../hooks/useCards";
 import Button from "../button/Button";
 import styles from "./Results.module.scss";
-const Results = ({ results }) => {
-  const { currentCard, forecast, handleSelectDay } = useCards(results);
+const Results = ({ results, numberOfDaysToShow = 7}) => {
+  const { currentCard, forecast, handleSelectDay } = useCards(results, numberOfDaysToShow);
   return (
     <>
       <div className={styles.daysWrapper}>

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 
-const useCards = (results = []) => {
+const useCards = (results = [], numberOfDaysToShow = 7) => {
   const [currentCard, setCurrentCard] = useState(null);
   const [forecast, setForecast] = useState([]);
   useEffect(() => {
@@ -9,7 +9,8 @@ const useCards = (results = []) => {
       handleSelectDay(null);
     }
     const days = [];
-    for (let i = 0; i < results.length; i += 2) {
+    const numberofDays = results.length ? numberOfDaysToShow * 2 : 0;
+    for (let i = 0; i < numberofDays; i += 2) {
       const name = i === 0 ? "Today" : results[i]?.name;
       days.push({
         name,

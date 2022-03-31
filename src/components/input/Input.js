@@ -10,6 +10,8 @@ const Input = ({
   postponeComponent,
   autoComplete = "off",
   message,
+  min,
+  max,
 }) => {
   return (
     <div className={styles.inputWrapper}>
@@ -24,6 +26,8 @@ const Input = ({
         onChange={onChange}
         disabled={disabled}
         autoComplete={autoComplete}
+        min={min}
+        max={max}
       />
       <div className={styles.postponeComponent}>{postponeComponent}</div>
       <div className={styles.error}>{message}</div>

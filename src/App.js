@@ -9,6 +9,7 @@ import searchIcon from "./img/searchIcon.svg";
 import Results from "./components/results/Results";
 function App() {
   const [address, setAddress] = useState("");
+  const [numberOfDays, setNumberOfDays] = useState(7);
   const { handleSearch, loading, message, results } = useSearch(address);
 
   return (
@@ -24,22 +25,32 @@ function App() {
           disabled={loading}
           message={message}
           postponeComponent={
-            <Button
-              styleType="primary"
-              style={{
-                height: "100%",
-                minWidth: "100px",
-                borderRadius: "0 30px 30px 0",
-              }}
-              type="submit"
-              loading={loading}
-            >
-              Search <img src={searchIcon} alt="Search icon" />
-            </Button>
+            <>
+              <Input
+                id="numberOfDaysToShow"
+                value={numberOfDays}
+                onChange={(e) => setNumberOfDays(e.target.value)}
+                placeholder="Number of days to show"
+                type="number"
+                disabled={loading}
+              />
+              <Button
+                styleType="primary"
+                style={{
+                  height: "100%",
+                  minWidth: "100px",
+                  borderRadius: "0 30px 30px 0",
+                }}
+                type="submit"
+                loading={loading}
+              >
+                Search <img src={searchIcon} alt="Search icon" />
+              </Button>
+            </>
           }
         />
       </form>
-      <Results results={results} />
+      <Results results={results} numberOfDaysToShow={numberOfDays} />
     </div>
   );
 }
